@@ -1,25 +1,18 @@
-export class User {}
-
-
 import { ObjectId } from "mongodb";
-
 import { Column, Entity, ObjectIdColumn } from "typeorm";
 
 
-@Entity('user')
-export class UserEntity {
+@Entity('image')
+export class ImageEntity {
     @ObjectIdColumn()
     _id: ObjectId
 
     @Column()
-    name: string;
+    userId: string
 
     @Column()
-    email: string;
+    hash: string
 
     @Column()
-    avatar: string;
-
-    @Column({ default: null })
-    job: string;
+    filePath: string
 }

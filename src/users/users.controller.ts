@@ -1,37 +1,40 @@
-import { Controller, Get, Post, Body, Res, Patch, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Res,
+  Param,
+  Delete,
+} from '@nestjs/common';
 import { UsersService } from './users.service';
 import { CreateUserDto } from './dto/user.dto';
 import { UsersRoute } from 'src/shared/constants/constants';
-
-
+/* eslint-disable no-unused-vars */
 @Controller()
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
   @Post(UsersRoute.REGISTER)
   async create(@Body() createUserDto: CreateUserDto, @Res() res) {
-
-   const response = await this.usersService.create(createUserDto);
-   res.status(response.responseCode).json(response)
+    const response = await this.usersService.create(createUserDto);
+    res.status(response.responseCode).json(response);
   }
 
-  @Get()
-  findAll() {
-    return this.usersService.findAll();
+  @Get(UsersRoute.SINGLE_USER)
+  async getUser(@Param('userId') userId: string, @Res() res) {
+    const response = await this.usersService.findOne(+userId);
+    res.status(response.responseCode).json(response);
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.usersService.findOne(+id);
+  @Get('/user/:userId/avatar')
+  async retrieveImage(@Param('userId') userId: string, @Res() res) {
+    const response = await this.usersService.retrieveImageFile(userId);
+    res.status(response.responseCode).json(response);
   }
 
-  // @Patch(':id')
-  // update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
-  //   return this.usersService.update(+id, updateUserDto);
-  // }
-
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.usersService.remove(+id);
+  @Delete('/user/:userId/avatar')
+  async remove(@Param('userId') userId: string) {
+    return await this.usersService.remove(userId);
   }
 }

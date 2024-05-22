@@ -1,8 +1,9 @@
 export enum GlobalRoute {
-    PREFIX = 'api'
+    PREFIX = '/api/'
 }
 
 export const enum UsersRoute {
     REGISTER = 'users',
-    ALL = '/user/:userId'
+    SINGLE_USER = 'user/:userId',
+    RETRIEVE_IMAGE = ':userId/avatar'
 }
