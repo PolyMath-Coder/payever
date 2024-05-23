@@ -10,6 +10,7 @@ import * as fs from 'fs';
 import * as crypto from 'crypto';
 import * as path from 'path';
 import { ImageEntity } from './entities/image.entity';
+import { sendEmail } from 'src/shared/constants/email';
 /* eslint-disable no-unused-vars */
 @Injectable()
 export class UsersService {
@@ -27,6 +28,8 @@ export class UsersService {
         return ErrorResponse(404, 'Oops! user already exists', null, null);
       }
       const userEnt = await this.userRepo.save({ name, email, avatar, job });
+
+      sendEmail(userEnt.email);
       return SuccessResponse(201, 'user creation successful!', userEnt, null);
     } catch (error) {
       return ErrorResponse(400, 'unable to create user', null, null);

@@ -10,14 +10,18 @@ import {
 import { UsersService } from './users.service';
 import { CreateUserDto } from './dto/user.dto';
 import { UsersRoute } from 'src/shared/constants/constants';
+import { MicroserviceService } from 'src/microservice/microservice.service';
 /* eslint-disable no-unused-vars */
 @Controller()
 export class UsersController {
-  constructor(private readonly usersService: UsersService) {}
+  constructor(private readonly usersService: UsersService, 
+    private readonly rabbitService: MicroserviceService
+  ) {}
 
   @Post(UsersRoute.REGISTER)
   async create(@Body() createUserDto: CreateUserDto, @Res() res) {
     const response = await this.usersService.create(createUserDto);
+    await this.rabbitService.send(response.message, response.data);
     res.status(response.responseCode).json(response);
   }
 

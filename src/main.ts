@@ -5,7 +5,7 @@ import { GlobalRoute } from './shared/constants/constants';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
-  app.setGlobalPrefix(GlobalRoute.PREFIX)
+  app.setGlobalPrefix(GlobalRoute.PREFIX);
   await app.listen(process.env.PORT);
 }
 bootstrap();
