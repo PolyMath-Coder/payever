@@ -196,48 +196,10 @@ describe('findOne', () => {
   });
  })
 
-//  it('should return error if an exception occurs', async () => {
-//   const createUserDto: CreateUserDto = {
-//     name: 'Janet Doe',
-//     email: 'janetdoe@gmail.com',
-//     avatar: 'https://janetdoe.png',
-//     job: 'banker'
-//   }
-//   const result = await service.create(createUserDto);
-//   const user = new UserEntity()
-//   jest.spyOn(userRepo, 'create').mockReturnValue(user);
-//  jest.spyOn(userRepo, 'save').mockRejectedValue(ErrorResponse(400, 'unable to create user',null, null));
- 
-//  await expect(
-//   service.create(createUserDto),
-// ).rejects.toThrow('unable to create user')
-// })
-
-//   it('should retrieve a user', () => {
-//     it('should return a user stored in cached system ', async () => {
-//       let userId = '3'
-//       const result = await service.findOne(userId)
-//       const cache = redisService.get(userId)
-//       expect(cache).toEqual(result)
-//       const user = new UserEntity()
-
-//       jest.spyOn(userRepo, 'findOne').mockResolvedValue(user)
-//     })
-//     it('should return a user fetched from third party', async () => {
-//       let userId = '3'
-//       const result = await service.findOne(userId)
-//       const user = new UserEntity()
-
-//       jest.spyOn(userRepo, 'findOne').mockResolvedValue(user)
-//     })
-
-//   })
-// });
 
 describe('retrieveImageFile', async () => {
   let service: UsersService;
   let imageRepo: Repository<ImageEntity>
-  // service = module.get(getRepositoryToken(UserEntity))
   it('should return base64 encoded image from local storage if exists', async () => {
     const _id  = '840940fiowi5ed904909'
     const userId = '1';
