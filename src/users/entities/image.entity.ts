@@ -1,18 +1,17 @@
-import { ObjectId } from "mongodb";
-import { Column, Entity, ObjectIdColumn } from "typeorm";
-
+import { ObjectId } from 'mongodb';
+import { Column, Entity, ObjectIdColumn } from 'typeorm';
 
 @Entity('image')
 export class ImageEntity {
-    @ObjectIdColumn()
-    _id: ObjectId
+  @ObjectIdColumn()
+  _id: ObjectId;
 
-    @Column()
-    userId: string
+  @Column()
+  userId: string;
 
-    @Column()
-    hash: string
+  @Column()
+  hash: string;
 
-    @Column()
-    filePath: string
+  @Column()
+  filePath: string;
 }

@@ -37,15 +37,12 @@ export class UsersService {
         return ErrorResponse(404, 'Oops! user already exists', null, null);
       }
       const userEnt = await this.userRepo.save({ name, email, avatar, job });
-   
       // Sends an email to user upon re//
       sendEmail(userEnt.email);
-   
-       /** The commented dummy rabbit function above sends d **/
-        await this.microService.send(name, createUserDto)
-     
-  
-    return SuccessResponse(201, 'user creation successful!', userEnt, null);
+
+      /** The commented dummy rabbit function above sends d **/
+      await this.microService.send(name, createUserDto);
+      return SuccessResponse(201, 'user creation successful!', userEnt, null);
     } catch (error) {
       return ErrorResponse(400, 'unable to create user', null, null);
     }

@@ -22,8 +22,6 @@ export class UsersController {
   @Post(UsersRoute.REGISTER)
   async create(@Body() createUserDto: CreateUserDto) {
     return await this.usersService.create(createUserDto);
-   // return await this.rabbitService.send(response.message, response.data);
-    
   }
 
   @Get(UsersRoute.SINGLE_USER)
