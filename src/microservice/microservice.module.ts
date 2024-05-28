@@ -13,7 +13,7 @@ import { ClientsModule, Transport } from '@nestjs/microservices';
           urls: [process.env.RABBIT_URL],
           queue: 'main_queue',
           queueOptions: {
-            durable: false
+            durable: false,
           },
         },
       },

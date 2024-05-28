@@ -12,14 +12,15 @@ export class UserEntity {
     _id: ObjectId
 
     @Column()
-    name: string;
-
-    @Column()
     email: string;
 
     @Column()
-    avatar: string;
+    first_name: string;
 
-    @Column({ default: null })
-    job: string;
+    @Column()
+    last_name: string;
+
+    @Column()
+    avatar: string
+
 }
